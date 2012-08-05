@@ -4,7 +4,7 @@ socialsignin-roo-showcase
 This project demonstrates how to add spring-social capability to a Roo generated project, using a number of SocialSignin projects
 to help developers to get up and running quickly: 
 
-- <a href="https://github.com/socialsignin/spring-social-security" target="_blank">spring-social-security</> is used for local-user authentication based on third party connection status, 
+- <a href="https://github.com/socialsignin/spring-social-security" target="_blank">spring-social-security</a> is used for local-user authentication based on third party connection status, 
   removing the need for local username/password account management
 
 - socialsignin-provider modules are used, allowing
