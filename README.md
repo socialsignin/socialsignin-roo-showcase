@@ -16,6 +16,12 @@ to help developers to get up and running quickly:
 - <a href="https://github.com/michaellavelle/spring-social-roo-connectionrepository" target="_blank">spring-social-roo-connection-repository</a> is used to enable Roo-backed JPA persistence to be used to store connections instead
 of using the Jdbc versions in the spring-social-core library.  
 
+To run this application:
+
+- Get the code: git clone https://github.com/socialsignin/socialsignin-roo-showcase.git
+- <a href="https://dev.twitter.com/apps">Register a Twitter applicaiton</a> and add your Consumer key and Consumer secret to 
+<a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/org/socialsignin/roo/showcase/socialsignin.properties">socialsignin.properties</a>
+-- mvn jetty:run , then click on the "Search Tweets" link from the homepage.
 
 This project was created using Roo as follows:
 ```
