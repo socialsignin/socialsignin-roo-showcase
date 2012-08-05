@@ -15,6 +15,10 @@
         <intercept-url pattern="/announce" access="isAuthenticated()" />
         <intercept-url pattern="/resources/**" access="permitAll" />
         <intercept-url pattern="/**" access="permitAll" />
+        
+        		<remember-me services-ref="springSocialSecurityRememberMeServices"
+			key="springSocialSecurity" />
+        
     </http>
     
      <beans:bean id="springSocialSecurityEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
@@ -24,4 +28,20 @@
     <!-- Configure Authentication mechanism -->
     <authentication-manager alias="authenticationManager">
     </authentication-manager>
+    
+    <beans:bean id="springSocialSecurityRememberMeServices"
+		class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+		<beans:property name="userDetailsService" ref="springSocialSecurityUserDetailsService" />
+		<beans:property name="tokenRepository" ref="tokenRepository" />
+		<beans:property name="key" value="springSocialSecurity" />
+		<beans:property name="alwaysRemember" value="true" />
+		<beans:property name="tokenValiditySeconds" value="3600" />
+	</beans:bean>
+
+	<beans:bean id="tokenRepository"
+		class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+		<beans:property name="createTableOnStartup" value="true" />
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+    
 </beans:beans>
