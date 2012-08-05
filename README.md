@@ -7,7 +7,7 @@ project --topLevelPackage org.socialsignin.roo.showcase --projectName socialsign
 web mvc setup
 security setup
 jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
-```
+
 * SocialSignIn repo and dependencies added to pom:
 ```
   <repository>
