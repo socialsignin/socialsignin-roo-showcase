@@ -7,8 +7,8 @@ project --topLevelPackage org.socialsignin.roo.showcase --projectName socialsign
 web mvc setup
 security setup
 jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
-
-* SocialSignIn repo and dependencies added to pom:
+```
+- SocialSignIn repo and dependencies added to pom:
 ```
   <repository>
     	<id>opensourceagility-snapshots</id>
@@ -35,8 +35,8 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 		</dependency>
 <!-- End SocialSignin dependencies -->
 ```
-* Showcase code created:
+- Showcase code created:
 	
-	** Showcase controller created, having access to TwitterProviderService.   
-	** Creation of view jsp, tiles view definition.
-	** Link added to index.jsp for to showcase controller
+	-- Showcase controller created, having access to TwitterProviderService.   
+	-- Creation of view jsp, tiles view definition.
+	-- Link added to index.jsp for to showcase controller
