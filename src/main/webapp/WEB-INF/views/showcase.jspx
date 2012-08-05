@@ -8,8 +8,14 @@
      <form action="searchTweets">
        <p>Search for public Tweets <input type="test" name="q" value="${param.q}" /> <input type="submit" value="Search" /></p>
 	</form> 
+    <form action="myTweets">
+       <p><input type="submit" value="Load my timeline" /></p>
+	</form>
+	<form action="announce" method="POST">
+       <p><input type="submit" value="Announce your existence to our Twitter followers" /></p>
+	</form>        
     <c:forEach var="tweet" items="${tweets}">
-    	<p><a target="_blank" href="http://twitter.com/${tweet.fromUser}">@<c:out value="${tweet.fromUser}" /></a> :  <c:out value="${tweet.text}" /></p>
+    	<p><c:out value="${tweet.text}" /></p>
     </c:forEach>
   </util:panel>
 </div>

@@ -14,10 +14,14 @@ package org.socialsignin.roo.showcase.controller;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.socialsignin.provider.twitter.TwitterProviderService;
+import org.springframework.core.env.Environment;
 import org.springframework.social.twitter.api.SearchResults;
+import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +46,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ShowcaseController {
 	
+	@Inject
+	private Environment environment;
 	
 	@Inject
 	private TwitterProviderService twitterProviderService;
@@ -67,5 +73,71 @@ public class ShowcaseController {
 			model.addAttribute("tweets", searchResults.getTweets());
 		}
 		return "showcase";
+	}
+	
+	/**
+	 * Display timeline tweets from the locally-authenticated user's Twitter account
+	 * 
+	 * @param model Holds the tweets retrieved from the current locally authenticated users' timeline
+	 * @return The main showcase view if users is authenticated, the twitter connection page otherwise
+	 */
+	@RequestMapping(value="/myTweets", method=RequestMethod.GET)
+	public String myTimeline(Model model) {
+		
+		/*
+		 * Obtain an API to Twitter, authenticated for the current local user
+		 */
+		Twitter authenticatedUserTwitterAccount = twitterProviderService.getAuthenticatedApi();
+		if (authenticatedUserTwitterAccount == null)
+		{
+			return "connect/twitter";
+		}
+		List<Tweet> tweets = authenticatedUserTwitterAccount.timelineOperations().getUserTimeline();
+		model.addAttribute("tweets", tweets);
+		return "showcase";
+	}
+	
+	/**
+	 * Sends a tweet from this application's Twitter account, announcing the currently authenticated user's profile
+	 * to the world
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/announce", method=RequestMethod.POST)
+	public String announce(Model model) {
+		Twitter adminUserTwitterAccount = twitterProviderService.getAuthenticatedApi(environment.getProperty("socialsignin.roo.showcase.adminLocalUserId"));
+		Twitter localUserTwitterAccount = twitterProviderService.getAuthenticatedApi();
+		if (localUserTwitterAccount == null)
+		{
+			return "connect/twitter";
+		}
+		else
+		{
+			String localUserTwitterAccountName = localUserTwitterAccount.userOperations().getScreenName();
+			if (!hasMadePreviousRecentAnnouncement(adminUserTwitterAccount,localUserTwitterAccountName))
+			{
+				adminUserTwitterAccount.timelineOperations().updateStatus(getAnnouncementMessage(localUserTwitterAccountName));
+			}
+			return "showcase";
+		}
+	}
+	
+	private boolean hasMadePreviousRecentAnnouncement(Twitter adminUserTwitterAccount,String twitterUserName)
+	{
+		List<Tweet> previousRecentAnnouncements = adminUserTwitterAccount.timelineOperations().getUserTimeline(1, 200);
+		for (Tweet previousRecentAnnouncement : previousRecentAnnouncements)
+		{
+			if (previousRecentAnnouncement.getText().equals(getAnnouncementMessage(twitterUserName)))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private String getAnnouncementMessage(String twitterUserName)
+	{
+		return "@" +  twitterUserName + " is using SocialSignin Showcase";
 	}
 }

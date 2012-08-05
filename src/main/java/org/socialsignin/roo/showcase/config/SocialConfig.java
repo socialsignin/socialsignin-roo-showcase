@@ -14,10 +14,19 @@ package org.socialsignin.roo.showcase.config;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import javax.inject.Inject;
+
+import org.socialsignin.springsocial.connect.quickstart.QuickstartConnectionData;
+import org.socialsignin.springsocial.connect.quickstart.QuickstartUsersConnectionRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.core.env.Environment;
+import org.springframework.social.connect.ConnectionData;
+import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
  
 /**
@@ -37,9 +46,58 @@ import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 @PropertySource("classpath:org/socialsignin/roo/showcase/socialsignin.properties")
 public class SocialConfig {
 
+	@Inject
+	private Environment environment;
+	
 	@Bean
 	@Scope(value="singleton") 
 	public ConnectionFactoryRegistry connectionFactoryRegistry() {
 		return new ConnectionFactoryRegistry();
 	}
+	
+	@Bean
+	@Scope(value="singleton", proxyMode=ScopedProxyMode.INTERFACES) 
+	public UsersConnectionRepository usersConnectionRepository() {
+		
+		QuickstartUsersConnectionRepository usersConnectionRepository = 
+				new QuickstartUsersConnectionRepository(connectionFactoryRegistry());
+				
+		usersConnectionRepository.addConnectionData(getAdminLocalUserId(), 
+				createTestTwitterConnectionData(environment.getProperty("socialsignin.roo.showcase.adminTwitterAccessToken"),
+						environment.getProperty("socialsignin.roo.showcase.adminTwitterAccessTokenSecret")), 1);
+		
+		usersConnectionRepository.addConnectionData(getAuthenticatedLocalUserId(), 
+				createTestTwitterConnectionData(environment.getProperty("socialsignin.roo.showcase.authenticatedUserTwitterAccessToken"),
+						environment.getProperty("socialsignin.roo.showcase.authenticatedUserTwitterAccessTokenSecret")), 1);
+
+		return usersConnectionRepository;
+
+	}
+	
+	@Bean
+	@Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)	
+	public ConnectionRepository connectionRepository() {
+		if (getAuthenticatedLocalUserId() == null) {
+			throw new IllegalStateException("Unable to get a ConnectionRepository: no local authenticated username configured");
+		}
+		return usersConnectionRepository().createConnectionRepository(getAuthenticatedLocalUserId());
+	}
+	
+
+	
+	private String getAdminLocalUserId()
+	{
+		return environment.getProperty("socialsignin.roo.showcase.adminLocalUserId");
+	}
+	
+	private String getAuthenticatedLocalUserId()
+	{
+		return environment.getProperty("socialsignin.roo.showcase.authenticatedLocalUserId");
+	}
+	
+	private ConnectionData createTestTwitterConnectionData(String twitterAccessToken,String twitterAccessTokenSecret)
+	{
+		return new QuickstartConnectionData("twitter",twitterAccessToken,twitterAccessTokenSecret,60);
+	}
+	
 }
