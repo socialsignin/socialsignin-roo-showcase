@@ -5,3 +5,4 @@ project --topLevelPackage org.socialsignin.roo.showcase --projectName socialsign
 web mvc setup
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-08-05 17:09:14
 security setup
+jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY

@@ -16,8 +16,6 @@ package org.socialsignin.roo.showcase.config;
  */
 import javax.inject.Inject;
 
-import org.socialsignin.springsocial.connect.quickstart.QuickstartConnectionData;
-import org.socialsignin.springsocial.connect.quickstart.QuickstartUsersConnectionRepository;
 import org.socialsignin.springsocial.security.signin.AuthenticatedUserIdHolder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,23 +23,15 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.env.Environment;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.social.connect.ConnectionData;
+import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.roo.RooTemplate;
+import org.springframework.social.connect.roo.RooUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
  
 /**
- * Configuration to support simplest ProviderSerivce use-case of
- * making calls to third party providers which don't require
- * specific user-authentication, such as searching public
- * twitter timeline.  Only requires the consumer keys and secrets
- * for your third party provider that were set up for your
- * applicaiton to be added to a properties file, and a single
- * bean from spring-social to be registered.
- *   
  * 
  * @author Michael Lavelle
  *
@@ -51,7 +41,10 @@ import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 public class SocialConfig {
 
 	@Inject
-	private Environment environment;	
+	private Environment environment;
+	
+	@Inject
+	private RooTemplate rooTemplate;
 	
 	@Inject
 	private ConnectionSignUp connectionSignUp;
@@ -67,9 +60,8 @@ public class SocialConfig {
 	@Scope(value="singleton", proxyMode=ScopedProxyMode.INTERFACES) 
 	public UsersConnectionRepository usersConnectionRepository() {
 		
-		QuickstartUsersConnectionRepository usersConnectionRepository = 
-				new QuickstartUsersConnectionRepository(connectionFactoryRegistry());
-
+		RooUsersConnectionRepository usersConnectionRepository = new RooUsersConnectionRepository(rooTemplate, connectionFactoryRegistry(), Encryptors.noOpText());
+		
 		if (connectionSignUp != null && "true".equals(environment.getProperty("socialsignin.implicitSignUp")))
 		{
 			usersConnectionRepository.setConnectionSignUp(connectionSignUp);
