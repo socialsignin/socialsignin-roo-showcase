@@ -9,7 +9,7 @@ security setup
 jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 
 ```
-SocialSignIn repo and dependencies added to pom:
+- SocialSignIn repo and dependencies added to pom:
 
 ```
   <repository>
@@ -45,3 +45,22 @@ SocialSignIn repo and dependencies added to pom:
 	Showcase controller created, having access to TwitterProviderService.   
 	Creation of view jsp, tiles view definition.
 	Link added to index.jsp for to showcase controller
+
+- Code additions/modificiations to support this showcase controller
+
+	Created 2 new views to support a user logging in via a third-party-provider and choosing a username, made some minor
+	amendments to existing header to display logged in status, and added messages to messages.properties to support these
+	views.  Created corresponding tiles view definitions.
+
+	AuthenticationDetailViewPreparer component created, and wired into views in views.xml (added into header attribute in
+	default.jspx  preparer="authenticationDetailViewPreparer" )
+	
+- Config modifications to support this showcase controller
+
+	Properties file created 
+
+	SocialConfig configuration class created
+
+	<class>org.springframework.social.connect.roo.UserConnection</class> added to persistence.xml
+
+	Modified applicationContext.xml, applicationContext-security.xml and webmvc-config.xml as follows:
