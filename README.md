@@ -1,6 +1,22 @@
 socialsignin-roo-showcase
 =========================
 
+This project demonstrates how to add spring-social capability to a Roo generated project, using a number of SocialSignin projects
+to help developers to get up and running quickly: 
+
+- spring-social-security is used for local-user authentication based on third party connection status, 
+  removing the need for local username/password account management
+
+- socialsignin-provider modules are used, allowing
+
+ 	- developers to obtain and interact with spring-social APIs directly for a number of common-use cases, rather than  dealing with 	       lower-level spring-social connection API
+	
+	- easy configuration  and registration of spring-social components through component-scanning
+
+- spring-social-roo-connection-repoitory is used to enable Roo-backed JPA persistence to be used to store connections instead
+of using the Jdbc versions in the spring-social-core library.  
+
+
 This project was created using Roo as follows:
 ```
 project --topLevelPackage org.socialsignin.roo.showcase --projectName socialsignin-roo-showcase --java 6 --packaging JAR
