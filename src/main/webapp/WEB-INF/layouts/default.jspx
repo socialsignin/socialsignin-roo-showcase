@@ -17,7 +17,7 @@
 	
   	<body class="tundra spring">
    		<div id="wrapper">
-		    <tiles:insertAttribute name="header" ignore="true" />
+		    <tiles:insertAttribute name="header" preparer="authenticationDetailViewPreparer" ignore="true" />
 		    <tiles:insertAttribute name="menu" ignore="true" />   
 		    <div id="main">
 	    		<tiles:insertAttribute name="body"/> 

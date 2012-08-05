@@ -18,14 +18,18 @@ import javax.inject.Inject;
 
 import org.socialsignin.springsocial.connect.quickstart.QuickstartConnectionData;
 import org.socialsignin.springsocial.connect.quickstart.QuickstartUsersConnectionRepository;
+import org.socialsignin.springsocial.security.signin.AuthenticatedUserIdHolder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.social.connect.ConnectionData;
 import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
  
@@ -47,7 +51,11 @@ import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 public class SocialConfig {
 
 	@Inject
-	private Environment environment;
+	private Environment environment;	
+	
+	@Inject
+	private ConnectionSignUp connectionSignUp;
+
 	
 	@Bean
 	@Scope(value="singleton") 
@@ -61,17 +69,13 @@ public class SocialConfig {
 		
 		QuickstartUsersConnectionRepository usersConnectionRepository = 
 				new QuickstartUsersConnectionRepository(connectionFactoryRegistry());
-				
-		usersConnectionRepository.addConnectionData(getAdminLocalUserId(), 
-				createTestTwitterConnectionData(environment.getProperty("socialsignin.roo.showcase.adminTwitterAccessToken"),
-						environment.getProperty("socialsignin.roo.showcase.adminTwitterAccessTokenSecret")), 1);
+
+		if (connectionSignUp != null && "true".equals(environment.getProperty("socialsignin.implicitSignUp")))
+		{
+			usersConnectionRepository.setConnectionSignUp(connectionSignUp);
+		}
 		
-		usersConnectionRepository.addConnectionData(getAuthenticatedLocalUserId(), 
-				createTestTwitterConnectionData(environment.getProperty("socialsignin.roo.showcase.authenticatedUserTwitterAccessToken"),
-						environment.getProperty("socialsignin.roo.showcase.authenticatedUserTwitterAccessTokenSecret")), 1);
-
 		return usersConnectionRepository;
-
 	}
 	
 	@Bean
@@ -82,22 +86,12 @@ public class SocialConfig {
 		}
 		return usersConnectionRepository().createConnectionRepository(getAuthenticatedLocalUserId());
 	}
-	
 
-	
-	private String getAdminLocalUserId()
-	{
-		return environment.getProperty("socialsignin.roo.showcase.adminLocalUserId");
-	}
 	
 	private String getAuthenticatedLocalUserId()
 	{
-		return environment.getProperty("socialsignin.roo.showcase.authenticatedLocalUserId");
+		return AuthenticatedUserIdHolder.getAuthenticatedUserId();
 	}
 	
-	private ConnectionData createTestTwitterConnectionData(String twitterAccessToken,String twitterAccessTokenSecret)
-	{
-		return new QuickstartConnectionData("twitter",twitterAccessToken,twitterAccessTokenSecret,60);
-	}
 	
 }

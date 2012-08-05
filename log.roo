@@ -3,3 +3,5 @@ project --topLevelPackage org.socialsignin.roo.showcase --projectName socialsign
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-08-05 13:44:05
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-08-05 13:52:06
 web mvc setup
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-08-05 17:09:14
+security setup

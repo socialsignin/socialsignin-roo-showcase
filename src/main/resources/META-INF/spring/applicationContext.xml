@@ -53,6 +53,7 @@
     
     <!--  Component scan for SocialSignin provider modules  -->
     <context:component-scan base-package="org.socialsignin.provider" />
+    <context:component-scan base-package="org.socialsignin.springsocial.security" />
     
 
 </beans>

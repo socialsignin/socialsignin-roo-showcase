@@ -1,6 +1,8 @@
-<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:tiles="http://tiles.apache.org/tags-tiles" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
   <jsp:directive.page contentType="text/html;charset=UTF-8" />
   <jsp:output omit-xml-declaration="yes" />
+  <tiles:useAttribute name="userName" ignore="true" />
+  
   <spring:message var="app_name" code="application_name" htmlEscape="false" />
   <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
   <util:panel id="title" title="${title}">
@@ -11,9 +13,11 @@
     <form action="myTweets">
        <p><input type="submit" value="Load my timeline" /></p>
 	</form>
+	<c:if test="${not empty userName}">
 	<form action="announce" method="POST">
        <p><input type="submit" value="Announce your existence to our Twitter followers" /></p>
-	</form>        
+	</form>    
+	</c:if>    
     <c:forEach var="tweet" items="${tweets}">
     	<p><c:out value="${tweet.text}" /></p>
     </c:forEach>

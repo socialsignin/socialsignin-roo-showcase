@@ -107,19 +107,26 @@ public class ShowcaseController {
 	@RequestMapping(value="/announce", method=RequestMethod.POST)
 	public String announce(Model model) {
 		Twitter adminUserTwitterAccount = twitterProviderService.getAuthenticatedApi(environment.getProperty("socialsignin.roo.showcase.adminLocalUserId"));
-		Twitter localUserTwitterAccount = twitterProviderService.getAuthenticatedApi();
-		if (localUserTwitterAccount == null)
+		if (adminUserTwitterAccount != null)
 		{
-			return "connect/twitter";
+			Twitter localUserTwitterAccount = twitterProviderService.getAuthenticatedApi();
+			if (localUserTwitterAccount == null)
+			{
+				return "connect/twitter";
+			}
+			else
+			{
+				String localUserTwitterAccountName = localUserTwitterAccount.userOperations().getScreenName();
+				if (!hasMadePreviousRecentAnnouncement(adminUserTwitterAccount,localUserTwitterAccountName))
+				{
+					adminUserTwitterAccount.timelineOperations().updateStatus(getAnnouncementMessage(localUserTwitterAccountName));
+				}
+				return "showcase";
+			}
 		}
 		else
 		{
-			String localUserTwitterAccountName = localUserTwitterAccount.userOperations().getScreenName();
-			if (!hasMadePreviousRecentAnnouncement(adminUserTwitterAccount,localUserTwitterAccountName))
-			{
-				adminUserTwitterAccount.timelineOperations().updateStatus(getAnnouncementMessage(localUserTwitterAccountName));
-			}
-			return "showcase";
+			throw new IllegalStateException("No Twitter connection details yet available for local admin user:" + environment.getProperty("socialsignin.roo.showcase.adminLocalUserId"));
 		}
 	}
 	

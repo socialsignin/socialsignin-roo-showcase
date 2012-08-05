@@ -1,0 +1,30 @@
+
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form" xmlns:tiles="http://tiles.apache.org/tags-tiles" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <tiles:useAttribute name="registeredProviderRoleNamesByProviderName"/>
+  <spring:message code="security_login_title" var="title" htmlEscape="false" />
+  <util:panel id="title" title="${title}">
+    <c:if test="${not empty param.login_error}">
+      <div class="errors">
+        <p>
+          <spring:message code="security_login_unsuccessful" />
+          <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+          .
+        </p>
+      </div>
+    </c:if>
+    <c:if test="${empty param.login_error}">
+      <p>
+        <spring:message code="security_socialsignup_message" />
+      </p>
+    </c:if>
+    <form:form action="" method="post" modelAttribute="signUpForm">
+<form:input path="userName"/>
+<input type="submit" value="Complete Sign Up"/>
+<form:errors path="*" />
+</form:form>
+  </util:panel>
+</div>
+
+

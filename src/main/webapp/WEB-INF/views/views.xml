@@ -1,28 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE tiles-definitions PUBLIC
-	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
-	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
 
-  <definition name="index" extends="default">
-    <put-attribute name="body" value="/WEB-INF/views/index.jspx" />
+  <definition extends="default" name="index">
+    <put-attribute name="body" value="/WEB-INF/views/index.jspx"/>
   </definition>
   
-  <definition name="showcase" extends="default">
-    <put-attribute name="body" value="/WEB-INF/views/showcase.jspx" />
+  <definition extends="default" name="showcase">
+    <put-attribute name="body" value="/WEB-INF/views/showcase.jspx"/>
+  </definition>
+  
+    <definition extends="default" name="signup">
+    <put-attribute name="body" value="/WEB-INF/views/signUpForm.jspx"/>
+  </definition>
+  
+   <definition extends="default" name="sociallogin">
+    <put-attribute name="body" value="/WEB-INF/views/sociallogin.jspx"/>
   </definition>
 
-  <definition name="dataAccessFailure" extends="public">
-    <put-attribute name="body" value="/WEB-INF/views/dataAccessFailure.jspx" />
+  <definition extends="public" name="dataAccessFailure">
+    <put-attribute name="body" value="/WEB-INF/views/dataAccessFailure.jspx"/>
   </definition>
 
-  <definition name="resourceNotFound" extends="public">
-    <put-attribute name="body" value="/WEB-INF/views/resourceNotFound.jspx" />
+  <definition extends="public" name="resourceNotFound">
+    <put-attribute name="body" value="/WEB-INF/views/resourceNotFound.jspx"/>
   </definition>
 
-  <definition name="uncaughtException" extends="public">
-    <put-attribute name="body" value="/WEB-INF/views/uncaughtException.jspx" />
+  <definition extends="public" name="uncaughtException">
+    <put-attribute name="body" value="/WEB-INF/views/uncaughtException.jspx"/>
   </definition>
 
+<definition extends="public" name="login">
+        <put-attribute name="body" value="/WEB-INF/views/login.jspx"/>
+    </definition>
 </tiles-definitions>
