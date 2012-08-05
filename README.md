@@ -4,7 +4,7 @@ socialsignin-roo-showcase
 This project demonstrates how to add spring-social capability to a Roo generated project, using a number of SocialSignin projects
 to help developers to get up and running quickly: 
 
-- spring-social-security is used for local-user authentication based on third party connection status, 
+- <a href="https://github.com/socialsignin/spring-social-security" target="_blank">spring-social-security</> is used for local-user authentication based on third party connection status, 
   removing the need for local username/password account management
 
 - socialsignin-provider modules are used, allowing
@@ -58,9 +58,10 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 
 - Showcase code created:
 	
-	Showcase controller created, having access to TwitterProviderService.   
-	Creation of view jsp, tiles view definition.
-	Link added to index.jsp for to showcase controller
+	- <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/java/org/socialsignin/roo/showcase/controller/ShowcaseController.java" target="_blank">ShowcaseController</a> created, having access to TwitterProviderService, 
+	demonstrating use of each of the 3 use-cases supported by SocialSignIn. 
+	- Creation of view jsp and creation of corresponding tiles view definition.
+	- Link added to index.jsp to showcase controller url.
 
 - Code additions/modificiations to support this showcase controller
 
