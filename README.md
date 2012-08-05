@@ -2,14 +2,13 @@ socialsignin-roo-showcase
 =========================
 
 This project was created using Roo as follows:
-
+```
 project --topLevelPackage org.socialsignin.roo.showcase --projectName socialsignin-roo-showcase --java 6 --packaging JAR
 web mvc setup
 security setup
 jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
-
+```
 SocialSignIn repo and dependencies added to pom:
-
 ```
   <repository>
     	<id>opensourceagility-snapshots</id>
