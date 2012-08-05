@@ -13,7 +13,7 @@ to help developers to get up and running quickly:
 	
 	- easy configuration  and registration of spring-social components through component-scanning
 
-- spring-social-roo-connection-repoitory is used to enable Roo-backed JPA persistence to be used to store connections instead
+- <a href="https://github.com/michaellavelle/spring-social-roo-connectionrepository" target="_blank">spring-social-roo-connection-repository</a> is used to enable Roo-backed JPA persistence to be used to store connections instead
 of using the Jdbc versions in the spring-social-core library.  
 
 
