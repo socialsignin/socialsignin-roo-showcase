@@ -8,7 +8,7 @@ web mvc setup
 security setup
 jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 ```
-SocialSignIn repo and dependencies added to pom:
+* SocialSignIn repo and dependencies added to pom:
 ```
   <repository>
     	<id>opensourceagility-snapshots</id>
@@ -17,8 +17,8 @@ SocialSignIn repo and dependencies added to pom:
 ```
 ```
  <!-- Start SocialSignin dependencies -->
-          <dependency>
-			<groupId>org.socialsignin</groupId>
+          	<dependency>
+		<groupId>org.socialsignin</groupId>
 			<artifactId>socialsignin-twitter</artifactId>
 			<version>1.0.2-SNAPSHOT</version>
 		</dependency>
@@ -33,5 +33,10 @@ SocialSignIn repo and dependencies added to pom:
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
 		</dependency>
-		<!-- End SocialSignin dependencies -->
+<!-- End SocialSignin dependencies -->
 ```
+* Showcase code created:
+	
+	** Showcase controller created, having access to TwitterProviderService.   
+	** Creation of view jsp, tiles view definition.
+	** Link added to index.jsp for to showcase controller
