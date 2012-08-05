@@ -21,7 +21,7 @@ To run this application:
 - Get the code: git clone https://github.com/socialsignin/socialsignin-roo-showcase.git
 - <a href="https://dev.twitter.com/apps">Register a Twitter applicaiton</a> and add your Consumer key and Consumer secret to 
 <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/org/socialsignin/roo/showcase/socialsignin.properties">socialsignin.properties</a>
--- mvn jetty:run , then click on the "Search Tweets" link from the homepage.
+- mvn jetty:run , go to <a target="_blank" href="http://localhost:8080/socialsignin-roo-showcase">http://localhost:8080/socialsignin-roo-showcase</a>, then click on the "Search Tweets" link from the homepage.
 
 This project was created using Roo as follows:
 ```
