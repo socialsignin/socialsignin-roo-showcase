@@ -20,7 +20,7 @@
 		    <tiles:insertAttribute name="header" preparer="authenticationDetailViewPreparer" ignore="true" />
 		    <tiles:insertAttribute name="menu" ignore="true" />   
 		    <div id="main">
-	    		<tiles:insertAttribute name="body"/> 
+	    		<tiles:insertAttribute name="body" preparer="authenticationDetailViewPreparer" /> 
 		    	<tiles:insertAttribute name="footer" ignore="true"/>
 		    </div>
 		</div>
