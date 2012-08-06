@@ -94,9 +94,7 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 
 	<a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/META-INF/spring/applicationContext.xml">applicationContext.xml</a>, component scan for SocialSignIn Provider modules, Spring Social Security and Roo-based UsersConnectionRepository
 
-
- 	<!--  Component scan for SocialSignin provider modules  -->
-    	```
+	```
     	<context:component-scan base-package="org.socialsignin.provider"/>
     
     	<!--  Component scan for Spring Social Security  -->
