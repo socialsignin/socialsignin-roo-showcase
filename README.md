@@ -105,6 +105,31 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
         	<context:exclude-filter expression=".*_Roo_.*" type="regex"/>
     	</context:component-scan>   
 	``` 
+	
+	In <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/META-INF/spring/applicationContext-security.xml">applicationContext-security.xml</a>
+	
+	Create an entry point for your security
+	```
+    	<beans:bean id="springSocialSecurityEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+ 	<beans:property name="loginFormUrl" value="/sociallogin"/>
+	</beans:bean>
+	```
+	Replace <form-login> element with 
+	```
+	<custom-filter position="FORM_LOGIN_FILTER" ref="springSocialSecurityAuthenticationFilter" />
+	```
+	set autoconfig= false and add entry-point-ref="springSocialSecurityEntryPoint"
+
+	Remove authenticated provider definition from the authentication manager bean
+	
+	Protect our resources:
+	```
+        <intercept-url pattern="/myTweets" access="isAuthenticated()" />
+        <intercept-url pattern="/promote" access="isAuthenticated()" />
+        <intercept-url pattern="/announce" access="isAuthenticated()" />
+	```
+	Add optional remember-me support
+	
 
 	In <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/spring/webmvc-config.xml">webmvc-config.xml</a>
 
@@ -129,4 +154,4 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 	Note that here we are wiring in spring-social-security's connectInterceptorList to ensure uniqueness of
         social connections amonsgt users and to add provider-specific authentication roles to be granted to the user.
 
-	Changed <mvc:view-controller path="/login"/> to <mvc:view-controller path="/sociallogin"/> so our new sociallogin view is accessable
+	Changed <mvc:view-controller path="/login"/> to <mvc:view-controller path="/sociallogin"/> so our new sociallogin view is accessible
