@@ -21,7 +21,7 @@ To run this application:
 - Get the code: git clone https://github.com/socialsignin/socialsignin-roo-showcase.git
 - <a href="https://dev.twitter.com/apps">Register a Twitter applicaiton</a> and add your Consumer key and Consumer secret to 
 <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/org/socialsignin/roo/showcase/socialsignin.properties">socialsignin.properties</a>
-- mvn jetty:run , go to <a target="_blank" href="http://localhost:8080/socialsignin-roo-showcase">http://localhost:8080/socialsignin-roo-showcase</a>, then click on the "Search Tweets" link from the homepage.
+- mvn jetty:run , go to <a target="_blank" href="http://localhost:8080/socialsignin-roo-showcase">http://localhost:8080/socialsignin-roo-showcase</a>, then click on the "Start Showcase" link from the homepage.
 
 This project was created using Roo as follows:
 ```
@@ -66,24 +66,27 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 	
 	- <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/java/org/socialsignin/roo/showcase/controller/ShowcaseController.java" target="_blank">ShowcaseController</a> created, having access to TwitterProviderService, 
 	demonstrating use of each of the 3 use-cases supported by SocialSignIn. 
-	- Creation of view jsp and creation of corresponding tiles view definition.
-	- Link added to index.jsp to showcase controller url.
+	- Creation of <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/showcase.jspx>showcase.jspx</a> and creation of corresponding <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/views.xml">tiles view definition</a>.
 
-- Code additions/modificiations to support this showcase controller
+- Code additions/modifications to support this showcase code
 
-	Created 2 new views to support a user logging in via a third-party-provider and choosing a username, made some minor
-	amendments to existing header to display logged in status, and added messages to messages.properties to support these
-	views.  Created corresponding tiles view definitions.
+	Added showcase instructions and a link to ShowcaseController url to <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/index.jspx">index.jspx</a>
 
-	AuthenticationDetailViewPreparer component created, and wired into views in views.xml (added into header attribute in
-	default.jspx  preparer="authenticationDetailViewPreparer" )
+	Created <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/sociallogin.jspx">sociallogin.jspx</a> to support a user logging in via a third-party-provider and <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/signUpForm.jspx">signUpForm.jspx</a> for username selection on signup, made some minor
+	amendments to <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/header.jspx">existing header</a> to display logged in status, and added messages to <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/i18n/messages.properties">messages.properties</a> to support these
+	views.  Created corresponding <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/views.xml">tiles view definitions</a>.
+
+	AuthenticationDetailViewPreparer component created and wired into <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/layouts/default.jspx">default.jspx</a>
+	default.jspx, so as to make authentication information available to all views.
 	
-- Config modifications to support this showcase controller
+- Config modifications to support this showcase code
 
-	Properties file created 
+	<a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/org/socialsignin/roo/showcase/socialsignin.properties">Properties file created</a>
 
-	SocialConfig configuration class created
+	<a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/java/org/socialsignin/roo/showcase/config/SocialConfig.java">SocialConfig</a> configuration class created
+	```
+	<class>org.springframework.social.connect.roo.UserConnection</class> 
+	```
+	added to <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/META-INF/persistence.xml" >persistence.xml</a>
 
-	<class>org.springframework.social.connect.roo.UserConnection</class> added to persistence.xml
-
-	Modified applicationContext.xml, applicationContext-security.xml and webmvc-config.xml as follows:
+	Modified <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/META-INF/spring/applicationContext.xml">applicationContext.xml</a>, <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/META-INF/spring/applicationContext-security.xml">applicationContext-security.xml</a> and <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/spring/webmvc-config.xml">webmvc-config.xml</a> as follows:
