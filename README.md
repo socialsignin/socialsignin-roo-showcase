@@ -137,7 +137,7 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 
 	Added property placeholder configuration to allow our socialsignin.properties file to be picked up by web components.
 
-	Added a preparer factory to tiles configurer, allowing application to use view preparer spring beans:
+	Added a preparer factory to tiles configurer, allowing application to use view preparer spring beans to provide auth information to all views.
 
 	```
 	<property name="preparerFactoryClass" value= "org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory"/>
@@ -154,4 +154,4 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 	Note that here we are wiring in spring-social-security's connectInterceptorList to ensure uniqueness of
         social connections amonsgt users and to add provider-specific authentication roles to be granted to the user.
 
-	Changed <mvc:view-controller path="/login"/> to <mvc:view-controller path="/sociallogin"/> so our new sociallogin view is accessible
+	Changed "login" to "sociallogin" in view-controller path so our social login view is accessible
