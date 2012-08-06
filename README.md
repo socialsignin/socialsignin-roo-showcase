@@ -114,7 +114,7 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
  	<beans:property name="loginFormUrl" value="/sociallogin"/>
 	</beans:bean>
 	```
-	Replace <form-login> element with 
+	Replace form-login element with 
 	```
 	<custom-filter position="FORM_LOGIN_FILTER" ref="springSocialSecurityAuthenticationFilter" />
 	```
