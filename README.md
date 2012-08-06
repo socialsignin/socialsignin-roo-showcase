@@ -108,17 +108,17 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 
 In <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/spring/webmvc-config.xml">webmvc-config.xml</a>:
 
-	-- Added component scan for org.socialsignin.springsocial.security package to allow SignUpController to be registered
+	Added component scan for org.socialsignin.springsocial.security package to allow SignUpController to be registered
 
-	-- Added property placeholder configuration to allow our socialsignin.properties file to be picked up by web components.
+	Added property placeholder configuration to allow our socialsignin.properties file to be picked up by web components.
 
-	-- Added a preparer factory to tiles configurer, allowing application to use view preparer spring beans:
+	Added a preparer factory to tiles configurer, allowing application to use view preparer spring beans:
 
-	``
+	```
 	<property name="preparerFactoryClass" value= "org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory"/>
-	``
+	```
 
-	-- Added Spring-Social's ProviderSignInController and ConnectController to allow application to perform OAuth-dance.	
+	Added Spring-Social's ProviderSignInController and ConnectController to allow application to perform OAuth-dance.	
 	```
 	<bean class="org.springframework.social.connect.web.ConnectController">
   			<property name="interceptors" ref="connectInterceptorList" />
@@ -129,4 +129,4 @@ In <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-sho
 	Note that here we are wiring in spring-social-security's connectInterceptorList to ensure uniqueness of
         social connections amonsgt users and to add provider-specific authentication roles to be granted to the user.
 
-	-- Changed <mvc:view-controller path="/login"/> to <mvc:view-controller path="/sociallogin"/> so our new sociallogin view is accessable
+	Changed <mvc:view-controller path="/login"/> to <mvc:view-controller path="/sociallogin"/> so our new sociallogin view is accessable
