@@ -90,3 +90,20 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 	added to <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/META-INF/persistence.xml" >persistence.xml</a>
 
 	Modified <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/META-INF/spring/applicationContext.xml">applicationContext.xml</a>, <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/META-INF/spring/applicationContext-security.xml">applicationContext-security.xml</a> and <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/spring/webmvc-config.xml">webmvc-config.xml</a> as follows:
+
+
+	<a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/META-INF/spring/applicationContext.xml">applicationContext.xml</a>, component scan for SocialSignIn Provider modules, Spring Social Security and Roo-based UsersConnectionRepository
+
+
+ 	<!--  Component scan for SocialSignin provider modules  -->
+    	```
+    	<context:component-scan base-package="org.socialsignin.provider"/>
+    
+    	<!--  Component scan for Spring Social Security  -->
+    	<context:component-scan base-package="org.socialsignin.springsocial.security"/>
+    
+    	<!--  Component scan for Roo managed peristence for ConnectionRepository  -->
+    	<context:component-scan base-package="org.springframework.social.connect.roo">
+        	<context:exclude-filter expression=".*_Roo_.*" type="regex"/>
+    	</context:component-scan>   
+	``` 
