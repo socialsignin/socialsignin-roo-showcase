@@ -68,7 +68,7 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 	demonstrating use of each of the 3 use-cases supported by SocialSignIn. 
 	- Creation of <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/showcase.jspx>showcase.jspx</a> and creation of corresponding <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/views.xml">tiles view definition</a>.
 
-- Code additions/modifications to support this showcase code
+- View modifications to support this showcase code
 
 	Added showcase instructions and a link to ShowcaseController url to <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/views/index.jspx">index.jspx</a>
 
