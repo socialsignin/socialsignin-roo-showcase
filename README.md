@@ -106,7 +106,7 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
     	</context:component-scan>   
 	``` 
 
-In <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/spring/webmvc-config.xml">webmvc-config.xml</a>:
+	In <a target="_blank" href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/webapp/WEB-INF/spring/webmvc-config.xml">webmvc-config.xml</a>
 
 	Added component scan for org.socialsignin.springsocial.security package to allow SignUpController to be registered
 
