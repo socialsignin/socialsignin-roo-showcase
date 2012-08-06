@@ -13,6 +13,7 @@
         <intercept-url pattern="/member/**" access="isAuthenticated()" />
         <intercept-url pattern="/myTweets" access="isAuthenticated()" />
         <intercept-url pattern="/announce" access="isAuthenticated()" />
+        <intercept-url pattern="/promote" access="isAuthenticated()" />
         <intercept-url pattern="/resources/**" access="permitAll" />
         <intercept-url pattern="/**" access="permitAll" />
         

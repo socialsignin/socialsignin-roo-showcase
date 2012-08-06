@@ -13,9 +13,13 @@
     <form action="myTweets">
        <p><input type="submit" value="Load my timeline" /></p>
 	</form>
+	<form action="promote" method="POST">
+       <p><input type="submit" value="Tweet your use of SocialSignin Roo Showcase to your Twitter followers" /></p>
+	</form> 
 	<c:if test="${not empty userName}">
+	
 	<form action="announce" method="POST">
-       <p><input type="submit" value="Announce your existence to our Twitter followers" /></p>
+       <p><input type="submit" value="Announce your use of SocialSignin Roo Showcase to our Twitter followers" /></p>
 	</form>    
 	</c:if>    
     <c:forEach var="tweet" items="${tweets}">

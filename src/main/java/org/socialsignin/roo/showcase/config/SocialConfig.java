@@ -14,8 +14,10 @@ package org.socialsignin.roo.showcase.config;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.socialsignin.springsocial.security.ConnectInterceptorList;
 import org.socialsignin.springsocial.security.signin.AuthenticatedUserIdHolder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +32,7 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.roo.RooTemplate;
 import org.springframework.social.connect.roo.RooUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
+import org.springframework.social.connect.web.ConnectController;
  
 /**
  * 
@@ -48,7 +51,6 @@ public class SocialConfig {
 	
 	@Inject
 	private ConnectionSignUp connectionSignUp;
-
 	
 	@Bean
 	@Scope(value="singleton") 
@@ -84,6 +86,5 @@ public class SocialConfig {
 	{
 		return AuthenticatedUserIdHolder.getAuthenticatedUserId();
 	}
-	
 	
 }

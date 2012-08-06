@@ -29,13 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 /**
- * Showcase Controller - at this stage in our incremental
- * showcase of SocialSignin, we are only showcasing operations
- * performed against a third party api which do not require
- * specific user-level authentication - here searching the 
- * public twitter timeline.
  * 
- * Any ProviderServices on your classpath, are available for injecting
+ * Any ProviderServices on your classpath are available for injecting
  * here once provider-specific consumer keys/secrets have been added to your
  * environment properties and a component scan has been performed for
  * "org.socialsignin.provider.<providerid> components.
@@ -97,9 +92,10 @@ public class ShowcaseController {
 		return "showcase";
 	}
 	
+	
 	/**
 	 * Sends a tweet from this application's Twitter account, announcing the currently authenticated user's profile
-	 * to the world
+	 * to the this application's followers
 	 * 
 	 * @param model
 	 * @return
@@ -130,6 +126,26 @@ public class ShowcaseController {
 		}
 	}
 	
+	/**
+	 * Sends a tweet from the authenticated user's twitter account,  promoting SocialSignin Roo Showcase
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/promote", method=RequestMethod.POST)
+	public String promote(Model model) {
+			Twitter localUserTwitterAccount = twitterProviderService.getAuthenticatedApi();
+			if (localUserTwitterAccount == null)
+			{
+				return "connect/twitter";
+			}
+			else
+			{
+				localUserTwitterAccount.timelineOperations().updateStatus(getSocialSigninPromotionMessage());
+				return "showcase";
+			}
+	}
+	
 	private boolean hasMadePreviousRecentAnnouncement(Twitter adminUserTwitterAccount,String twitterUserName)
 	{
 		List<Tweet> previousRecentAnnouncements = adminUserTwitterAccount.timelineOperations().getUserTimeline(1, 200);
@@ -145,6 +161,13 @@ public class ShowcaseController {
 	
 	private String getAnnouncementMessage(String twitterUserName)
 	{
-		return "@" +  twitterUserName + " is using SocialSignin Showcase";
+		return "@" +  twitterUserName + " is trying out SocialSignin Roo Showcase https://github.com/socialsignin/socialsignin-roo-showcase";
 	}
+	
+	private String getSocialSigninPromotionMessage()
+	{
+		return "Sending a Tweet from SocialSignin Roo Showcase https://github.com/socialsignin/socialsignin-roo-showcase";
+	}
+	
+	
 }

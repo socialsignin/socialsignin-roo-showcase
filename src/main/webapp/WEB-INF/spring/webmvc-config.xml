@@ -5,7 +5,7 @@
     
                 
     <!-- The controllers are autodetected POJOs labeled with the @Controller annotation. -->
-    <context:component-scan base-package="org.socialsignin.roo.showcase,org.socialsignin.springsocial.security,org.springframework.social.connect.web" use-default-filters="false">
+    <context:component-scan base-package="org.socialsignin.roo.showcase,org.socialsignin.springsocial.security" use-default-filters="false">
         <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
     
@@ -77,4 +77,11 @@
       </list>
     </property>
   </bean>
+  
+    <bean class="org.springframework.social.connect.web.ConnectController">
+  		<property name="interceptors" ref="connectInterceptorList" />
+  </bean>
+  
+    <bean class="org.springframework.social.connect.web.ProviderSignInController" />
+  
 </beans>
