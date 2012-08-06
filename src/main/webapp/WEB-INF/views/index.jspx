@@ -20,7 +20,7 @@
     <p>Searching public timeline does not require a login to the application</p>
     <p>Use of authenticated api functionality such as loading your timeline or sending Tweets is protected by <a target="_blank" href="https://github.com/socialsignin/spring-social-security>spring-social-security">spring-social-security</a> and the user
     will be prompted to login to a local account using any registered providers for authentication (only Twitter registered at this time, but providers are automatically registered by adding as project dependencies)</p>  
-    <p>Sending a Tweet on behalf of the application requires that a local account with the username "testAdminUser" be created (by logging in with the Twitter account of your application for example, and choosing the username "testAdminUser").  Another user will then be able to log in with Twitter account "B" and use the "Announce my use of SocialSignin Showcase" functionality)</p>
+    <p>Sending a Tweet on behalf of the application requires that a local account with the username "testAdminUser" be created (by logging in with the Twitter account of your application for example, and choosing the username "testAdminUser").  Another user will then be able to log in with a different Twitter account and use the "Announce my use of SocialSignin Showcase" functionality)</p>
     <a href="searchTweets"><h3>Start Showcase</h3></a>
   </util:panel>
 </div>
