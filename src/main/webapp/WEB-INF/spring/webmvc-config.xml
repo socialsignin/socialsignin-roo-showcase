@@ -82,6 +82,9 @@
   		<property name="interceptors" ref="connectInterceptorList" />
   </bean>
   
-    <bean class="org.springframework.social.connect.web.ProviderSignInController" />
+    <bean class="org.springframework.social.connect.web.ProviderSignInController" >
+    	<property name="signUpUrl" value="/signup" />
+		<property name="postSignInUrl" value="/authenticate" />
+    </bean>
   
 </beans>
