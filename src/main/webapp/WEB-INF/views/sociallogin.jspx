@@ -16,18 +16,37 @@
     </c:if>
     <c:if test="${empty param.login_error}">
       <p>
+      	<c:choose>
+		<c:when test="${empty provider}">      
         <spring:message code="security_sociallogin_message" />
+        </c:when>
+        <c:otherwise>
+        	Please connect with <c:out value="${provider}" /> to use this functionality
+        </c:otherwise>
+        </c:choose>
       </p>
     </c:if>
     
+<c:choose>
+<c:when test="${empty provider}">
+<c:set var="signinOrConnectPath" value="signin" />
+</c:when>
+<c:otherwise>
+<c:set var="signinOrConnectPath" value="connect" />
+</c:otherwise>
+</c:choose>    
+    
+    
 <c:forEach var="entry"
 	items="${registeredProviderRoleNamesByProviderName}">
-<p>    
-    
-    	<!-- PROVIDER SIGNIN -->
+<p>        
+<!-- PROVIDER SIGNIN -->
 <!-- TODO: Remove hardcoded context path -->
 <c:if test="${empty provider or provider eq entry.key}">
-<form name="${entry.key}_signin" id="${entry.key}_signin" action="/socialsignin-roo-showcase/signin/${entry.key}" method="POST">
+
+
+
+<form name="${entry.key}_signin" id="${entry.key}_signin" action="/socialsignin-roo-showcase/${signinOrConnectPath}/${entry.key}" method="POST">
 <input type="hidden" name="scope" value="offline_access" />
 	<input type="submit" value="${entry.key}" />
 </form>

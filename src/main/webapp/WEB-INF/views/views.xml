@@ -22,7 +22,12 @@
     <put-attribute name="provider" value="twitter" cascade="true" />
     <put-attribute name="body" value="/WEB-INF/views/sociallogin.jspx"/>
   </definition>
-
+  
+     <definition extends="default" name="connect/twitterConnected">
+    <put-attribute name="provider" value="twitter" cascade="true" />
+    <put-attribute name="body" value="/WEB-INF/views/connected.jspx"/>
+  </definition>
+  
   <definition extends="public" name="dataAccessFailure">
     <put-attribute name="body" value="/WEB-INF/views/dataAccessFailure.jspx"/>
   </definition>
