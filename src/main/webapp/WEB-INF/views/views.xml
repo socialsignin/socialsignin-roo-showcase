@@ -18,6 +18,7 @@
     <put-attribute name="body" value="/WEB-INF/views/sociallogin.jspx"/>
   </definition>
   
+  <!--  Twitter views, required by Spring Social -->
    <definition extends="default" name="connect/twitter">
     <put-attribute name="provider" value="twitter" cascade="true" />
     <put-attribute name="body" value="/WEB-INF/views/sociallogin.jspx"/>
@@ -27,6 +28,20 @@
     <put-attribute name="provider" value="twitter" cascade="true" />
     <put-attribute name="body" value="/WEB-INF/views/connected.jspx"/>
   </definition>
+  <!-- End Twitter views -->
+
+   <!--  Facebook views, required by Spring Social -->
+   <definition extends="default" name="connect/facebook">
+    <put-attribute name="provider" value="facebook" cascade="true" />
+    <put-attribute name="body" value="/WEB-INF/views/sociallogin.jspx"/>
+  </definition>
+  
+     <definition extends="default" name="connect/facebookConnected">
+    <put-attribute name="provider" value="facebook" cascade="true" />
+    <put-attribute name="body" value="/WEB-INF/views/connected.jspx"/>
+  </definition>
+  <!-- End Facebook views -->
+  
   
   <definition extends="public" name="dataAccessFailure">
     <put-attribute name="body" value="/WEB-INF/views/dataAccessFailure.jspx"/>
