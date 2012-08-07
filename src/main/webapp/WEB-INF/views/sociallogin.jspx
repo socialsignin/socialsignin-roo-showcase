@@ -47,7 +47,9 @@
 
 
 <form name="${entry.key}_signin" id="${entry.key}_signin" action="/socialsignin-roo-showcase/${signinOrConnectPath}/${entry.key}" method="POST">
+<c:if test="${entry.key eq 'facebook'}">
 <input type="hidden" name="scope" value="offline_access" />
+</c:if>
 	<input type="submit" value="${entry.key}" />
 </form>
 </c:if>
