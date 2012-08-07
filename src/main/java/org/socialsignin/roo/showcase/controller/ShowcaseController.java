@@ -161,12 +161,12 @@ public class ShowcaseController {
 	
 	private String getAnnouncementMessage(String twitterUserName)
 	{
-		return "@" +  twitterUserName + " is trying out SocialSignin Roo Showcase https://github.com/socialsignin/socialsignin-roo-showcase";
+		return "@" +  twitterUserName + " is trying out SocialSignin Roo Showcase https://github.com/socialsignin/socialsignin-roo-showcase #springsocial";
 	}
 	
 	private String getSocialSigninPromotionMessage()
 	{
-		return "Sending a Tweet from SocialSignin Roo Showcase https://github.com/socialsignin/socialsignin-roo-showcase";
+		return "Sending a Tweet from SocialSignin Roo Showcase https://github.com/socialsignin/socialsignin-roo-showcase #springsocial";
 	}
 	
 	

@@ -2,6 +2,7 @@
   <jsp:directive.page contentType="text/html;charset=UTF-8" />
   <jsp:output omit-xml-declaration="yes" />
   <tiles:useAttribute name="registeredProviderRoleNamesByProviderName"/>
+  <tiles:useAttribute name="provider"/>
   <spring:message code="security_login_title" var="title" htmlEscape="false" />
   <util:panel id="title" title="${title}">
     <c:if test="${not empty param.login_error}">
@@ -25,11 +26,12 @@
     
     	<!-- PROVIDER SIGNIN -->
 <!-- TODO: Remove hardcoded context path -->
+<c:if test="${empty provider or provider eq entry.key}">
 <form name="${entry.key}_signin" id="${entry.key}_signin" action="/socialsignin-roo-showcase/signin/${entry.key}" method="POST">
 <input type="hidden" name="scope" value="offline_access" />
 	<input type="submit" value="${entry.key}" />
 </form>
-
+</c:if>
 </c:forEach>
     
   </util:panel>
