@@ -7,17 +7,22 @@
   <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
   <util:panel id="title" title="${title}">
      <h3>Showcase Controller</h3>
+     <c:if test="${empty userName}">
+   		<p>Please <a href="sociallogin">Login</a> to showcase additional members-only functionality</p>
+   	</c:if>
+   	<h4>Public Access</h4>
      <form action="searchTweets">
        <p>Search for public Tweets <input type="test" name="q" value="${param.q}" /> <input type="submit" value="Search" /></p>
 	</form> 
-    <form action="myTweets">
+   	
+	<c:if test="${not empty userName}">
+	<h4>Members-only access</h4>
+	 <form action="myTweets">
        <p><input type="submit" value="Load my timeline" /></p>
 	</form>
 	<form action="promote" method="POST">
        <p><input type="submit" value="Tweet your use of SocialSignin Roo Showcase to your Twitter followers" /></p>
 	</form> 
-	<c:if test="${not empty userName}">
-	
 	<form action="announce" method="POST">
        <p><input type="submit" value="Announce your use of SocialSignin Roo Showcase to our Twitter followers" /></p>
 	</form>    

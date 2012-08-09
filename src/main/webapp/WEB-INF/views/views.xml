@@ -19,7 +19,8 @@
   </definition>
   
   <!--  Twitter views, required by Spring Social -->
-   <definition extends="default" name="connect/twitter">
+  
+     <definition extends="default" name="connect/twitterConnect">
     <put-attribute name="provider" value="twitter" cascade="true" />
     <put-attribute name="body" value="/WEB-INF/views/sociallogin.jspx"/>
   </definition>
@@ -31,7 +32,7 @@
   <!-- End Twitter views -->
 
    <!--  Facebook views, required by Spring Social -->
-   <definition extends="default" name="connect/facebook">
+   <definition extends="default" name="connect/facebookConnect">
     <put-attribute name="provider" value="facebook" cascade="true" />
     <put-attribute name="body" value="/WEB-INF/views/sociallogin.jspx"/>
   </definition>
@@ -41,6 +42,18 @@
     <put-attribute name="body" value="/WEB-INF/views/connected.jspx"/>
   </definition>
   <!-- End Facebook views -->
+  
+     <!--  SoundCloud views, required by Spring Social -->
+   <definition extends="default" name="connect/soundcloudConnect">
+    <put-attribute name="provider" value="soundcloud" cascade="true" />
+    <put-attribute name="body" value="/WEB-INF/views/sociallogin.jspx"/>
+  </definition>
+  
+     <definition extends="default" name="connect/soundcloudConnected">
+    <put-attribute name="provider" value="soundcloud" cascade="true" />
+    <put-attribute name="body" value="/WEB-INF/views/connected.jspx"/>
+  </definition>
+  <!-- End SoundCloud views -->
   
   
   <definition extends="public" name="dataAccessFailure">

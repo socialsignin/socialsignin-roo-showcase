@@ -55,6 +55,21 @@ public class ShowcaseController {
 	 * @param query The query we will use to search for tweets
 	 * @return The main showcase view
 	 */
+	@RequestMapping(value="/showcase", method=RequestMethod.GET)
+	public String showcaseHome()
+	{
+		return "showcase";
+	}
+	
+	
+	/**
+	 * 
+	 * Display tweets from the public timeline matching a search query
+	 * 
+	 * @param model Holds the tweets retrieved for a given search
+	 * @param query The query we will use to search for tweets
+	 * @return The main showcase view
+	 */
 	@RequestMapping(value="/searchTweets", method=RequestMethod.GET)
 	public String search(Model model,@RequestParam(value="q",required=false,defaultValue="") String query) {
 			
@@ -83,10 +98,11 @@ public class ShowcaseController {
 		 * Obtain an API to Twitter, authenticated for the current local user
 		 */
 		Twitter authenticatedUserTwitterAccount = twitterProviderService.getAuthenticatedApi();
-		if (authenticatedUserTwitterAccount == null)
-		{
-			return "connect/twitter";
-		}
+		
+		// We are protecting this url with ROLE_USER_TWITTER, so the user will have
+		// an authenticated API for twitter. Twitter connections don't expire so no need
+		// to check for null authenticatedUserTwitterAccount here, however for other providers
+		// whose connections expire getAuthenticatedApi() should be checked for null.
 		List<Tweet> tweets = authenticatedUserTwitterAccount.timelineOperations().getUserTimeline();
 		model.addAttribute("tweets", tweets);
 		return "showcase";
@@ -106,19 +122,16 @@ public class ShowcaseController {
 		if (adminUserTwitterAccount != null)
 		{
 			Twitter localUserTwitterAccount = twitterProviderService.getAuthenticatedApi();
-			if (localUserTwitterAccount == null)
+			// We are protecting this url with ROLE_USER_TWITTER, so the user will have
+			// an authenticated API for twitter. Twitter connections don't expire so no need
+			// to check for null authenticatedUserTwitterAccount here, however for other providers
+			// whose connections expire getAuthenticatedApi() should be checked for null.
+			String localUserTwitterAccountName = localUserTwitterAccount.userOperations().getScreenName();
+			if (!hasMadePreviousRecentAnnouncement(adminUserTwitterAccount,localUserTwitterAccountName))
 			{
-				return "connect/twitter";
+				adminUserTwitterAccount.timelineOperations().updateStatus(getAnnouncementMessage(localUserTwitterAccountName));
 			}
-			else
-			{
-				String localUserTwitterAccountName = localUserTwitterAccount.userOperations().getScreenName();
-				if (!hasMadePreviousRecentAnnouncement(adminUserTwitterAccount,localUserTwitterAccountName))
-				{
-					adminUserTwitterAccount.timelineOperations().updateStatus(getAnnouncementMessage(localUserTwitterAccountName));
-				}
-				return "showcase";
-			}
+			return "showcase";
 		}
 		else
 		{
@@ -135,15 +148,12 @@ public class ShowcaseController {
 	@RequestMapping(value="/promote", method=RequestMethod.POST)
 	public String promote(Model model) {
 			Twitter localUserTwitterAccount = twitterProviderService.getAuthenticatedApi();
-			if (localUserTwitterAccount == null)
-			{
-				return "connect/twitter";
-			}
-			else
-			{
-				localUserTwitterAccount.timelineOperations().updateStatus(getSocialSigninPromotionMessage());
-				return "showcase";
-			}
+			// We are protecting this url with ROLE_USER_TWITTER, so the user will have
+			// an authenticated API for twitter. Twitter connections don't expire so no need
+			// to check for null authenticatedUserTwitterAccount here, however for other providers
+			// whose connections expire getAuthenticatedApi() should be checked for null.
+			localUserTwitterAccount.timelineOperations().updateStatus(getSocialSigninPromotionMessage());
+			return "showcase";
 	}
 	
 	private boolean hasMadePreviousRecentAnnouncement(Twitter adminUserTwitterAccount,String twitterUserName)

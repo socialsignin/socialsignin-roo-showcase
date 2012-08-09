@@ -51,7 +51,7 @@ public class AuthenticationDetailViewPreparer implements ViewPreparer {
 			tilesRequestContext.getRequestScope().put("exception", lastSessionException);
 			tilesRequestContext.getSessionScope().remove("lastSessionException");
 		}
-		Attribute providerRoleNames = new Attribute(getRegisteredProviderRoleNamesByProviderName());
+			Attribute providerRoleNames = new Attribute(getRegisteredProviderRoleNamesByProviderName());
 			Attribute userName = new Attribute(getAuthenticatedUserName());
 
 			attributeContext.putAttribute("registeredProviderRoleNamesByProviderName",providerRoleNames,true);

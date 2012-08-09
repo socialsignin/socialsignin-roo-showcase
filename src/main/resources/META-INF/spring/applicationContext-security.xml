@@ -5,15 +5,17 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     <!-- HTTP security configurations -->
-    <http auto-config="false" use-expressions="true" entry-point-ref="springSocialSecurityEntryPoint">
+    <http auto-config="false" use-expressions="true" entry-point-ref="springSocialSecurityEntryPoint" >
     	<custom-filter position="FORM_LOGIN_FILTER" ref="springSocialSecurityAuthenticationFilter" />
         <logout logout-url="/resources/j_spring_security_logout" />
+        <access-denied-handler ref="springSocialSecurityAccessDeniedHandler"/>
+        
         <!-- Configure these elements to secure URIs in your application -->
         <intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/member/**" access="isAuthenticated()" />
-        <intercept-url pattern="/myTweets" access="isAuthenticated()" />
-        <intercept-url pattern="/announce" access="isAuthenticated()" />
-        <intercept-url pattern="/promote" access="isAuthenticated()" />
+        <intercept-url pattern="/myTweets" access="hasRole('ROLE_USER_TWITTER')" />
+        <intercept-url pattern="/announce" access="hasRole('ROLE_USER_TWITTER')" />
+        <intercept-url pattern="/promote" access="hasRole('ROLE_USER_TWITTER')" />
         <intercept-url pattern="/resources/**" access="permitAll" />
         <intercept-url pattern="/**" access="permitAll" />
         
@@ -21,6 +23,10 @@
 			key="springSocialSecurity" />
         
     </http>
+    
+    <beans:bean id="springSocialSecurityAccessDeniedHandler" class="org.socialsignin.springsocial.security.signin.SpringSocialSecurityAccessDeniedHandler">
+ 		<beans:property name="errorPage" value="/sociallogin"/>
+	</beans:bean>
     
      <beans:bean id="springSocialSecurityEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
  		<beans:property name="loginFormUrl" value="/sociallogin"/>

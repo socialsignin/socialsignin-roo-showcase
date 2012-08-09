@@ -12,15 +12,17 @@
     </p>
     <p>3 main use-cases of SocialSignin are showcased</p>
     <ol>
-    <li>Using the Twitter API for unauthenticated calls, such as searching public timeline</li>
-    <li>Using the Twitter API on behalf of currently authenticated user of the application, for sending Tweets or accessing user's timeline</li>
-    <li>Using the Twitter API on behalf of a different user, such as using the application's admin account to send an announcement</li>
+    <li>Using 3rd Party APIs for unauthenticated calls, such as searching public Twitter timeline</li>
+    <li>Using 3rd Party APIs on behalf of currently authenticated user of the application, for example, sending Tweets on behalf of the user or accessing user's own Twitter timeline</li>
+    <li>Using 3rd Party APIs on behalf of a different user, such as using the application's admin account to send an announcement Tweet to the application's followers</li>
     </ol>
+    <p>Use of certain functions (such as searching public Twitter timeline) does not require a user to login to the application</p>
+    <p>Use of members-only functionality is protected by <a target="_blank" href="https://github.com/socialsignin/spring-social-security>spring-social-security">spring-social-security</a> and the user
+    will be prompted to login to a local account using any of the registered providers for authentication.</p><p>  If the user chooses to create their account with provider A (eg. Facebook) and subsequently wishes to use functionality of provider B (eg. Twitter), they will be asked to "connect" their account with provider B when they try to use provider B functionality, and their local account will then be associated with both providers. The next time the user logs in they can use any provider associated with their account to authenticate</p>  
+    <p>NB: Sending a Tweet on behalf of the application first requires that a local account with the username "testAdminUser" be created (by logging in with the Twitter account of your application for example, and choosing the username "testAdminUser").  Another user will then be able to log in with a different Twitter account and use the "Announce my use of SocialSignin Showcase" functionality)</p>
     <p>To get started, <a target="_blank" href="https://dev.twitter.com/apps">register a Twitter application</a> and add your Consumer key and Consumer secret to socialsignin.properties</p>
-    <p>Searching public timeline does not require a login to the application</p>
-    <p>Use of authenticated api functionality such as loading your timeline or sending Tweets is protected by <a target="_blank" href="https://github.com/socialsignin/spring-social-security>spring-social-security">spring-social-security</a> and the user
-    will be prompted to login to a local account using any registered providers for authentication (only Twitter registered at this time, but providers are automatically registered by adding as project dependencies)</p>  
-    <p>Sending a Tweet on behalf of the application requires that a local account with the username "testAdminUser" be created (by logging in with the Twitter account of your application for example, and choosing the username "testAdminUser").  Another user will then be able to log in with a different Twitter account and use the "Announce my use of SocialSignin Showcase" functionality)</p>
-    <a href="searchTweets"><h3>Start Showcase</h3></a>
+   
+    <a href="showcase"><h3>Start Showcase</h3></a>
+    
   </util:panel>
 </div>

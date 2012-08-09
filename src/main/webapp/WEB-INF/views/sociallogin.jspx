@@ -3,6 +3,7 @@
   <jsp:output omit-xml-declaration="yes" />
   <tiles:useAttribute name="registeredProviderRoleNamesByProviderName"/>
   <tiles:useAttribute name="provider" ignore="true" />
+  <tiles:useAttribute name="userName" ignore="true" />
   <spring:message code="security_login_title" var="title" htmlEscape="false" />
   <util:panel id="title" title="${title}">
     <c:if test="${not empty param.login_error}">
@@ -21,7 +22,12 @@
         <spring:message code="security_sociallogin_message" />
         </c:when>
         <c:otherwise>
-        	Please connect with <c:out value="${provider}" /> to use this functionality
+            <c:if test="${empty userName}">
+        	Please login with <c:out value="${provider}" /> to use this functionality
+        	</c:if>
+        	 <c:if test="${not empty userName}">
+        	You are currently logged in with a provider other than <c:out value="${provider}" />, please connect with <c:out value="${provider}" /> to use this functionality
+        	</c:if>
         </c:otherwise>
         </c:choose>
       </p>
