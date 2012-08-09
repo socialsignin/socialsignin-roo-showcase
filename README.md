@@ -19,7 +19,7 @@ of using the Jdbc versions in the spring-social-core library.
 To run this application:
 
 - Get the code: git clone https://github.com/socialsignin/socialsignin-roo-showcase.git
-- <a href="https://dev.twitter.com/apps">Register a Twitter applicaiton</a> and add your Consumer key and Consumer secret to 
+- <a href="https://dev.twitter.com/apps">Register a Twitter application</a> and add your Consumer key and Consumer secret to 
 <a href="https://github.com/socialsignin/socialsignin-roo-showcase/blob/master/src/main/resources/org/socialsignin/roo/showcase/socialsignin.properties">socialsignin.properties</a>
 - mvn jetty:run , go to <a target="_blank" href="http://localhost:8080/socialsignin-roo-showcase">http://localhost:8080/socialsignin-roo-showcase</a>, then click on the "Start Showcase" link from the homepage.
 
@@ -118,15 +118,25 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 	```
 	<custom-filter position="FORM_LOGIN_FILTER" ref="springSocialSecurityAuthenticationFilter" />
 	```
-	set autoconfig= false and add entry-point-ref="springSocialSecurityEntryPoint"
+	set autoconfig= false and add entry-point-ref="springSocialSecurityEntryPoint".
+
+	Add spring-social-security access denied handler for provider-specific access denied pages 
+	```
+	<access-denied-handler ref="springSocialSecurityAccessDeniedHandler"/>
+	```
+	```
+	<beans:bean id="springSocialSecurityAccessDeniedHandler" class="org.socialsignin.springsocial.security.signin.SpringSocialSecurityAccessDeniedHandler">
+ 		<beans:property name="errorPage" value="/sociallogin"/>
+	</beans:bean>
+	```
 
 	Remove authenticated provider definition from the authentication manager bean
 	
 	Protect our resources:
 	```
-        <intercept-url pattern="/myTweets" access="isAuthenticated()" />
-        <intercept-url pattern="/promote" access="isAuthenticated()" />
-        <intercept-url pattern="/announce" access="isAuthenticated()" />
+        <intercept-url pattern="/myTweets" access="hasRole('ROLE_USER_TWITTER')" />
+        <intercept-url pattern="/promote" access="hasRole('ROLE_USER_TWITTER')" />
+        <intercept-url pattern="/announce" access="hasRole('ROLE_USER_TWITTER')" />
 	```
 	Add optional remember-me support
 	
@@ -149,9 +159,13 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
   			<property name="interceptors" ref="connectInterceptorList" />
 	</bean>
 
-        <bean class="org.springframework.social.connect.web.ProviderSignInController" />
+        <bean class="org.springframework.social.connect.web.ProviderSignInController" >
+		<property name="signUpUrl" value="/signup" />
+		<property name="postSignInUrl" value="/authenticate" />
+	</bean>
 	```
 	Note that here we are wiring in spring-social-security's connectInterceptorList to ensure uniqueness of
         social connections amonsgt users and to add provider-specific authentication roles to be granted to the user.
+	We send the postSignInUrl to "/authenticate" which is the url registered for our authentication filter.
 
 	Changed "login" to "sociallogin" in view-controller path so our social login view is accessible
