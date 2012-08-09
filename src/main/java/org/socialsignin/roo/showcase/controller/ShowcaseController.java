@@ -49,10 +49,8 @@ public class ShowcaseController {
 
 	/**
 	 * 
-	 * Display tweets from the public timeline matching a search query
+	 * Showcase Home
 	 * 
-	 * @param model Holds the tweets retrieved for a given search
-	 * @param query The query we will use to search for tweets
 	 * @return The main showcase view
 	 */
 	@RequestMapping(value="/showcase", method=RequestMethod.GET)

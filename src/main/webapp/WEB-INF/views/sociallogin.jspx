@@ -26,7 +26,15 @@
         	Please login with <c:out value="${provider}" /> to use this functionality
         	</c:if>
         	 <c:if test="${not empty userName}">
-        	You are currently logged in with a provider other than <c:out value="${provider}" />, please connect with <c:out value="${provider}" /> to use this functionality
+        	<c:choose>
+			<c:when test="${not empty springSocialSecurityRequiredProviders}">
+        	 <p>To use this functionality, please first connect your account with the following provider(s) : <c:out value="${springSocialSecurityRequiredProviders} "/></p>
+        	 <p>Connect with <c:out value="${provider}" /></p>
+        	 </c:when>
+        	 <c:otherwise>
+        	 Please connect with <c:out value="${provider}" /> to use this functionality
+        	 </c:otherwise>
+        	 </c:choose>
         	</c:if>
         </c:otherwise>
         </c:choose>
