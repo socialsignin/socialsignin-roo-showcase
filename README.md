@@ -120,14 +120,9 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 	```
 	set autoconfig= false and add entry-point-ref="springSocialSecurityEntryPoint".
 
-	Add spring-social-security access denied handler for provider-specific access denied pages 
+	Add reference to spring-social-security access denied handler for provider-specific access denied pages 
 	```
 	<access-denied-handler ref="springSocialSecurityAccessDeniedHandler"/>
-	```
-	```
-	<beans:bean id="springSocialSecurityAccessDeniedHandler" class="org.socialsignin.springsocial.security.signin.SpringSocialSecurityAccessDeniedHandler">
- 		<beans:property name="errorPage" value="/sociallogin"/>
-	</beans:bean>
 	```
 
 	Remove authenticated provider definition from the authentication manager bean
