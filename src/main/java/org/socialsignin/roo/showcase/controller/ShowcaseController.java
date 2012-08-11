@@ -100,7 +100,7 @@ public class ShowcaseController {
 		// We are protecting this url with ROLE_USER_TWITTER, so the user will have
 		// an authenticated API for twitter. Twitter connections don't expire so no need
 		// to check for null authenticatedUserTwitterAccount here, however for other providers
-		// whose connections expire getAuthenticatedApi() should be checked for null.
+		// whose connections expire,  getAuthenticatedApi() should be checked for null.
 		List<Tweet> tweets = authenticatedUserTwitterAccount.timelineOperations().getUserTimeline();
 		model.addAttribute("tweets", tweets);
 		return "showcase";

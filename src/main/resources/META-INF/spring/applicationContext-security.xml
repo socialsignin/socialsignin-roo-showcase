@@ -24,10 +24,6 @@
         
     </http>
     
-    <beans:bean id="springSocialSecurityAccessDeniedHandler" class="org.socialsignin.springsocial.security.signin.SpringSocialSecurityAccessDeniedHandler">
- 		<beans:property name="errorPage" value="/sociallogin"/>
-	</beans:bean>
-    
      <beans:bean id="springSocialSecurityEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
  		<beans:property name="loginFormUrl" value="/sociallogin"/>
 	</beans:bean>

@@ -15,6 +15,10 @@
         </p>
       </div>
     </c:if>
+    <c:if test="${not empty exception}">
+		<p><c:out value="${exception.message}" /></p>
+	</c:if>
+  
     <c:if test="${empty param.login_error}">
       <p>
       	<c:choose>

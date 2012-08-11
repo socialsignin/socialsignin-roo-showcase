@@ -6,6 +6,9 @@
   <spring:message code="security_login_title" var="title" htmlEscape="false" />
   <util:panel id="title" title="${title}">
     <c:out value="${provider}" /> is now connected
+     <c:if test="${not empty springSocialSecurityConnectInterceptorSavedRequestUrl}">
+    <a href="${springSocialSecurityConnectInterceptorSavedRequestUrl}">Continue</a>
+    </c:if>
   </util:panel>
 </div>
 
