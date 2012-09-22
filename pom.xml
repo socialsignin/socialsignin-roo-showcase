@@ -11,10 +11,10 @@
 		<aspectj.version>1.6.12</aspectj.version>
 		<java.version>6</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<roo.version>1.2.1.RELEASE</roo.version>
+		<roo.version>1.2.2.RELEASE</roo.version>
 		<slf4j.version>1.6.4</slf4j.version>
-		<spring.version>3.1.0.RELEASE</spring.version>
-		<spring-security.version>3.1.0.RELEASE</spring-security.version>
+		<spring.version>3.1.2.RELEASE</spring.version>
+		<spring-security.version>3.1.2.RELEASE</spring-security.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -34,7 +34,11 @@
 		</repository>
 		<repository>
 			<id>opensourceagility-snapshots</id>
-			<url>http://repo.opensourceagility.com/snapshots </url>
+			<url>http://repo.opensourceagility.com/snapshots</url>
+		</repository>
+		<repository>
+			<id>opensourceagility-releases</id>
+			<url>http://repo.opensourceagility.com/releases</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
@@ -241,7 +245,7 @@
 		<dependency>
 			<groupId>org.socialsignin</groupId>
 			<artifactId>spring-social-security</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
+			<version>1.0.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.social</groupId>
