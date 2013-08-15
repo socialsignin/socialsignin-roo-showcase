@@ -42,23 +42,48 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 
 ```
  <!-- Start SocialSignin dependencies -->
-          	<dependency>
-		<groupId>org.socialsignin</groupId>
+		<dependency>
+			<groupId>org.socialsignin</groupId>
 			<artifactId>socialsignin-twitter</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+			<dependency>
+			<groupId>org.socialsignin</groupId>
+			<artifactId>socialsignin-facebook</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+			<dependency>
+			<groupId>org.socialsignin</groupId>
+			<artifactId>socialsignin-soundcloud</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-  			<groupId>javax.persistence</groupId>
-  			<artifactId>persistence-api</artifactId>
-  			<version>1.0</version>
-  			<scope>provided</scope>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
 		</dependency>
-<!-- End SocialSignin dependencies -->
+		<dependency>
+			<groupId>org.socialsignin</groupId>
+			<artifactId>spring-social-security</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-roo-connectionrepository</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+			<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-config-extension</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+		<!-- End SocialSignin dependencies -->
 
 ```
 
