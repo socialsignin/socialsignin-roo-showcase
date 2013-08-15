@@ -47,16 +47,6 @@ jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 			<artifactId>socialsignin-twitter</artifactId>
 			<version>1.1.0-SNAPSHOT</version>
 		</dependency>
-			<dependency>
-			<groupId>org.socialsignin</groupId>
-			<artifactId>socialsignin-facebook</artifactId>
-			<version>1.1.0-SNAPSHOT</version>
-		</dependency>
-			<dependency>
-			<groupId>org.socialsignin</groupId>
-			<artifactId>socialsignin-soundcloud</artifactId>
-			<version>1.1.0-SNAPSHOT</version>
-		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
