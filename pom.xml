@@ -13,8 +13,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<roo.version>1.2.2.RELEASE</roo.version>
 		<slf4j.version>1.6.4</slf4j.version>
-		<spring.version>3.2.3.RELEASE</spring.version>
-		<spring-security.version>3.1.2.RELEASE</spring-security.version>
+		<spring.version>4.0.2.RELEASE</spring.version>
+		<spring-security.version>3.2.0.RELEASE</spring-security.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -40,6 +40,14 @@
 			<id>opensourceagility-releases</id>
 			<url>http://repo.opensourceagility.com/releases</url>
 		</repository>
+		<repository>
+        <id>spring-snapshots</id>
+        <name>Spring Snapshots</name>
+        <url>http://repo.spring.io/snapshot</url>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>	
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -250,11 +258,6 @@
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-roo-connectionrepository</artifactId>
-			<version>1.1.0-SNAPSHOT</version>
-		</dependency>
-			<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-config-extension</artifactId>
 			<version>1.1.0-SNAPSHOT</version>
 		</dependency>
 		<!-- End SocialSignin dependencies -->
